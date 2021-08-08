@@ -2,7 +2,7 @@
     package="com.example.cekovid">
    <application
         android:label="cekovid"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,5 +37,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
