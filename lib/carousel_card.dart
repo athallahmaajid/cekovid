@@ -8,7 +8,8 @@ class CarouselCard extends StatefulWidget {
   String itemIndex;
   final penambahan;
 
-  CarouselCard({Key? key, this.item, this.itemIndex: "", this.penambahan}) : super(key: key);
+  CarouselCard({Key? key, this.item, this.itemIndex: "", this.penambahan})
+      : super(key: key);
 
   @override
   _CarouselCardState createState() => _CarouselCardState();
@@ -19,7 +20,6 @@ class _CarouselCardState extends State<CarouselCard> {
   var icon;
 
   void chooseColorIcon() {
-    print(widget.penambahan);
     switch (widget.itemIndex) {
       case "Positif":
         baseColor = Colors.yellow;
@@ -95,14 +95,17 @@ class _CarouselCardState extends State<CarouselCard> {
               style: TextStyle(color: baseColor, fontSize: 24.0),
             ),
           ),
-          (widget.penambahan == null) ? Container() :
-          Expanded(
-            flex: 2,
-            child: Text(
-              (widget.penambahan < 0) ? "${filterNumber(widget.penambahan)}" : "+${filterNumber(widget.penambahan)}"
-                  ,style: TextStyle(fontSize: 16.0, color: Colors.black26),
-            ),
-          ),
+          (widget.penambahan == null)
+              ? Container()
+              : Expanded(
+                  flex: 2,
+                  child: Text(
+                    (widget.penambahan < 0)
+                        ? "${filterNumber(widget.penambahan)}"
+                        : "+${filterNumber(widget.penambahan)}",
+                    style: TextStyle(fontSize: 16.0, color: Colors.black26),
+                  ),
+                ),
         ],
       ),
     );

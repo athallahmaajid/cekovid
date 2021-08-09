@@ -65,7 +65,6 @@ class _CovidDataState extends State<CovidData> {
       penambahan = {};
       displayData = {
         "Positif": data["confirmed"]['value'],
-        "Sembuh": data["recovered"]["value"],
         "Meninggal": data["deaths"]['value']
       };
       _loading = false;
@@ -232,7 +231,6 @@ class _CovidDataState extends State<CovidData> {
                   items: displayData.keys.toList().map((i) {
                     return Builder(
                       builder: (BuildContext context) {
-                        print(displayData[i]);
                         return CarouselCard(
                           item: displayData[i],
                           itemIndex: i,
