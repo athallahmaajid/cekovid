@@ -50,7 +50,7 @@ class _HospitalDetailState extends State<HospitalDetail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 10),
+                        margin: EdgeInsets.only(left: 15),
                         child: Text(
                           detailData["data"]["name"],
                           style: TextStyle(
@@ -61,7 +61,7 @@ class _HospitalDetailState extends State<HospitalDetail> {
                         height: 5,
                       ),
                       Container(
-                          margin: EdgeInsets.only(left: 10),
+                          margin: EdgeInsets.only(left: 15),
                           child: Text(detailData["data"]["address"])),
                       GestureDetector(
                         onTap: () {
@@ -70,7 +70,7 @@ class _HospitalDetailState extends State<HospitalDetail> {
                         child: (detailData['data']['phone'] == null)
                             ? IgnorePointer(
                                 child: Container(
-                                  margin: EdgeInsets.only(top: 15, left: 10),
+                                  margin: EdgeInsets.only(top: 15, left: 15),
                                   width: 120,
                                   padding: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
@@ -89,7 +89,7 @@ class _HospitalDetailState extends State<HospitalDetail> {
                                 ),
                               )
                             : Container(
-                                margin: EdgeInsets.only(top: 15, left: 10),
+                                margin: EdgeInsets.only(top: 15, left: 15),
                                 width: 120,
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(

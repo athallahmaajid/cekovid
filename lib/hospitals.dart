@@ -96,9 +96,15 @@ class _CovidHospitalState extends State<CovidHospital> {
       // Widget
       widgetPlaceholder = SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-                "Rumah Sakit terupdate di ${userLocation.subAdministrativeArea}"),
+            Container(
+              margin: EdgeInsets.only(left: 15),
+              child: Text(
+                "Rumah Sakit terupdate di ${userLocation.subAdministrativeArea}",
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600),
+              ),
+            ),
             ListView.builder(
               shrinkWrap: true,
               itemCount: hospitals.length,

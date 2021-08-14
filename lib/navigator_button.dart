@@ -4,7 +4,9 @@ class NavigatorButton extends StatefulWidget {
   final firstText;
   final secondText;
   final destination;
-  const NavigatorButton({Key? key, this.firstText, this.secondText, this.destination}) : super(key: key);
+  const NavigatorButton(
+      {Key? key, this.firstText, this.secondText, this.destination})
+      : super(key: key);
 
   @override
   _NavigatorButtonState createState() => _NavigatorButtonState();
@@ -16,7 +18,7 @@ class _NavigatorButtonState extends State<NavigatorButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushReplacementNamed(widget.destination),
+      onTap: () => Navigator.pushNamed(context, widget.destination),
       onTapDown: (event) {
         setState(() {
           _isPressed = !_isPressed;
