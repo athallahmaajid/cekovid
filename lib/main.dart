@@ -3,13 +3,14 @@ import 'package:cekovid/main_screen.dart';
 import 'package:cekovid/covid_data.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cekovid/news.dart';
+import 'package:cekovid/hospitals.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await precachePicture(
-      ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/covid_19_precautions.svg'),
-      null
-  );
+      ExactAssetPicture(
+          SvgPicture.svgStringDecoder, 'assets/covid_19_precautions.svg'),
+      null);
   runApp(MyApp());
 }
 
@@ -21,10 +22,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => new MainScreen(),
         '/covidData': (BuildContext context) => new CovidData(),
         '/news': (BuildContext context) => new CovidNews(),
+        '/hospital': (BuildContext context) => new CovidHospital(),
       },
     );
   }

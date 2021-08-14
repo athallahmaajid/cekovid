@@ -39,6 +39,7 @@ class _CovidDataState extends State<CovidData> {
         .get(Uri.parse("https://data.covid19.go.id/public/api/update.json"));
     var data = json.decode(response.body);
     IndonesiaData finalData = IndonesiaData.fromJson(data['update']['total']);
+    if (!mounted) return;
     setState(() {
       penambahan = data["update"]['penambahan'];
       penambahan = {
@@ -133,6 +134,11 @@ class _CovidDataState extends State<CovidData> {
                 onTap: () =>
                     Navigator.of(context).pushReplacementNamed("/news"),
               ),
+              ListTile(
+                title: Text("Hospital"),
+                onTap: () =>
+                    Navigator.of(context).pushReplacementNamed("/hospital"),
+              ),
             ],
           ),
         ),
@@ -195,7 +201,7 @@ class _CovidDataState extends State<CovidData> {
                   ? DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         value: provinsi,
-                        items: mapProvinsi.keys
+                        items: listProvinsi
                             .toList()
                             .map<DropdownMenuItem<String>>((value) {
                           return DropdownMenuItem(

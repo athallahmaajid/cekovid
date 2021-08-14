@@ -1,8 +1,8 @@
-String filterNumber(int number){
+String filterNumber(int number) {
   List<String> reversed = number.toString().split('').reversed.toList();
   String res = "";
   for (var i = 0; i < reversed.length; i++) {
-    if ((i % 3 == 0) && (i != reversed.length)){
+    if ((i % 3 == 0) && (i != reversed.length)) {
       res = res + ",";
     }
     res = res + reversed[i];

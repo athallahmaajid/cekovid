@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cekovid/navigator_button.dart';
 
 class MainScreen extends StatefulWidget {
-
   MainScreen({Key? key}) : super(key: key);
 
   @override
@@ -12,7 +11,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -50,6 +48,11 @@ class _MainScreenState extends State<MainScreen> {
                 onTap: () =>
                     Navigator.of(context).pushReplacementNamed("/news"),
               ),
+              ListTile(
+                title: Text("Covid Hospital"),
+                onTap: () =>
+                    Navigator.of(context).pushReplacementNamed("/hospital"),
+              ),
             ],
           ),
         ),
@@ -67,20 +70,31 @@ class _MainScreenState extends State<MainScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              NavigatorButton(firstText: "Covid 19 di",secondText: "Indonesia", destination: '/covidData',),
-              NavigatorButton(firstText: "Berita Covid",secondText: "di Indonesia", destination: '/news',),
+              NavigatorButton(
+                firstText: "Covid 19 di",
+                secondText: "Indonesia",
+                destination: '/covidData',
+              ),
+              NavigatorButton(
+                firstText: "Berita Covid",
+                secondText: "di Indonesia",
+                destination: '/news',
+              ),
             ],
           ),
-          // Please don't remove this comment, because i want to create something in the future
-          // SizedBox(
-          //   height: 30,
-          // ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     NavigatorButton(firstText: "Covid 19 di",secondText: "Indonesia", destination: '/covidData',),
-          //   ],
-          // )
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              NavigatorButton(
+                firstText: "Cari",
+                secondText: "Rumah Sakit",
+                destination: '/hospital',
+              ),
+            ],
+          )
         ],
       ),
     );
