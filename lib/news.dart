@@ -83,6 +83,7 @@ class _CovidNewsState extends State<CovidNews> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      Text("Berita terbaru Covid-19"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [

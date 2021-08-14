@@ -94,250 +94,280 @@ class _CovidHospitalState extends State<CovidHospital> {
       hospitals = res['hospitals'];
 
       // Widget
-      widgetPlaceholder = ListView.builder(
-        itemCount: hospitals.length,
-        itemBuilder: ((context, index) {
-          var _isPressed = false;
-          return GestureDetector(
-            onTapDown: (event) {
-              setState(() {
-                _isPressed = true;
-              });
-            },
-            onTapUp: (event) {
-              setState(() {
-                _isPressed = false;
-              });
-            },
-            child: Container(
-              margin: EdgeInsets.all(15),
-              padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: (_isPressed) ? Colors.blue : Colors.white,
-                border: Border.all(
-                  color: (hospitals[index]['bed_availability'] == 0)
-                      ? Color(0xFFa11616)
-                      : Colors.transparent,
-                  width: 5,
-                ),
-              ),
-              child: Column(
-                children: [
-                  IntrinsicHeight(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+      widgetPlaceholder = SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+                "Rumah Sakit terupdate di ${userLocation.subAdministrativeArea}"),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: hospitals.length,
+              itemBuilder: ((context, index) {
+                var _isPressed = false;
+                return GestureDetector(
+                  onTapDown: (event) {
+                    setState(() {
+                      _isPressed = true;
+                    });
+                  },
+                  onTapUp: (event) {
+                    setState(() {
+                      _isPressed = false;
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: (_isPressed) ? Colors.blue : Colors.white,
+                      border: Border.all(
+                        color: (hospitals[index]['bed_availability'] == 0)
+                            ? Color(0xFFa11616)
+                            : Colors.transparent,
+                        width: 5,
+                      ),
+                    ),
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: Text(
-                            hospitals[index]['name'],
-                            style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.w700),
+                        IntrinsicHeight(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  hospitals[index]['name'],
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  IntrinsicHeight(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              child: Column(
+                        SizedBox(
+                          height: 10,
+                        ),
+                        IntrinsicHeight(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    hospitals[index]['address'],
-                                    textAlign: TextAlign.left,
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          hospitals[index]['address'],
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      (hospitals[index]['bed_availability'] ==
+                                              0)
+                                          ? Container(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  10, 20, 10, 20),
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFa11616),
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
+                                              child: Text(
+                                                "Penuh!",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            )
+                                          : Container(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    "Tersedia: ${hospitals[index]['bed_availability']}",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                    (hospitals[index]
+                                                                ['queue'] ==
+                                                            0)
+                                                        ? "Tanpa antrean"
+                                                        : "Antrean: ${hospitals[index]['queue']}",
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                (hospitals[index]['bed_availability'] == 0)
-                                    ? Container(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 20, 10, 20),
+                            GestureDetector(
+                              onTap: () {
+                                _launchURL(
+                                    'tel:://${hospitals[index]['phone']}');
+                              },
+                              child: (hospitals[index]['phone'] == null)
+                                  ? IgnorePointer(
+                                      child: Container(
+                                        margin: EdgeInsets.only(top: 15),
+                                        padding: EdgeInsets.all(5),
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFa11616),
+                                          color: Color(0xA8004455),
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
-                                        child: Text(
-                                          "Penuh!",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      )
-                                    : Container(
-                                        child: Column(
+                                        child: Row(
                                           children: [
+                                            Icon(Icons.phone,
+                                                color: Colors.white),
                                             Text(
-                                              "Tersedia: ${hospitals[index]['bed_availability']}",
+                                              "Tidak Tersedia",
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                              (hospitals[index]['queue'] == 0)
-                                                  ? "Tanpa antrean"
-                                                  : "Antrean: ${hospitals[index]['queue']}",
+                                                  color: Colors.white),
                                             ),
                                           ],
                                         ),
                                       ),
+                                    )
+                                  : Container(
+                                      margin: EdgeInsets.only(top: 15),
+                                      padding: EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF004469),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.phone,
+                                              color: Colors.white),
+                                          Text(
+                                            hospitals[index]['phone'],
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                            ),
+                            Wrap(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 15),
+                                  child: OutlinedButton(
+                                    onPressed: () async {
+                                      var responseDetail = await http.get(Uri.parse(
+                                          "https://rs-bed-covid-api.vercel.app/api/get-hospital-map?hospitalid=${hospitals[index]['id']}"));
+                                      var detailData = json
+                                          .decode(responseDetail.body)['data'];
+                                      _launchURL(
+                                          'https://www.google.com/maps/search/?api=1&query=${detailData['lat']},${detailData['long']}');
+                                    },
+                                    style: ButtonStyle(
+                                      foregroundColor:
+                                          MaterialStateProperty.all(
+                                              Color(0xFF004469)),
+                                      shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.location_on,
+                                          color: Color(0xFF6c63ff),
+                                          size: 14,
+                                        ),
+                                        Text(
+                                          "Lokasi",
+                                          style: TextStyle(
+                                            color: Color(0xFF6c63ff),
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 15),
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HospitalDetail(
+                                                      id: hospitals[index]
+                                                          ["id"])));
+                                    },
+                                    style: ButtonStyle(
+                                      foregroundColor:
+                                          MaterialStateProperty.all(
+                                              Color(0xFF004469)),
+                                      shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Detail",
+                                      style: TextStyle(
+                                        color: Color(0xFF6c63ff),
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ],
-                        )
+                        ),
+                        Divider(),
+                        Text(
+                          "${hospitals[index]["info"].substring(8, hospitals[index]["info"].length)}",
+                          style: TextStyle(fontSize: 12),
+                        ),
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL('tel:://${hospitals[index]['phone']}');
-                        },
-                        child: (hospitals[index]['phone'] == null)
-                            ? IgnorePointer(
-                                child: Container(
-                                  margin: EdgeInsets.only(top: 15),
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xA8004455),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.phone, color: Colors.white),
-                                      Text(
-                                        "Tidak Tersedia",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                margin: EdgeInsets.only(top: 15),
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF004469),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.phone, color: Colors.white),
-                                    Text(
-                                      hospitals[index]['phone'],
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                      ),
-                      Wrap(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: 15),
-                            child: OutlinedButton(
-                              onPressed: () async {
-                                var responseDetail = await http.get(Uri.parse(
-                                    "https://rs-bed-covid-api.vercel.app/api/get-hospital-map?hospitalid=${hospitals[index]['id']}"));
-                                var detailData =
-                                    json.decode(responseDetail.body)['data'];
-                                _launchURL(
-                                    'https://www.google.com/maps/search/?api=1&query=${detailData['lat']},${detailData['long']}');
-                              },
-                              style: ButtonStyle(
-                                foregroundColor: MaterialStateProperty.all(
-                                    Color(0xFF004469)),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.location_on,
-                                    color: Color(0xFF6c63ff),
-                                    size: 14,
-                                  ),
-                                  Text(
-                                    "Lokasi",
-                                    style: TextStyle(
-                                      color: Color(0xFF6c63ff),
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 15),
-                            child: OutlinedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HospitalDetail(
-                                            id: hospitals[index]["id"])));
-                              },
-                              style: ButtonStyle(
-                                foregroundColor: MaterialStateProperty.all(
-                                    Color(0xFF004469)),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                ),
-                              ),
-                              child: Text(
-                                "Detail",
-                                style: TextStyle(
-                                  color: Color(0xFF6c63ff),
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Divider(),
-                  Text(
-                    "${hospitals[index]["info"].substring(8, hospitals[index]["info"].length)}",
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ],
-              ),
+                );
+              }),
             ),
-          );
-        }),
+          ],
+        ),
       );
       setState(() {
         _isLoading = false;
@@ -389,11 +419,13 @@ class _CovidHospitalState extends State<CovidHospital> {
           ),
         ),
       ),
-      body: RefreshIndicator(
-        onRefresh: getHospitals,
-        child: (_isLoading)
-            ? LoadingWidget(callbackFunc: getHospitals)
-            : widgetPlaceholder,
+      body: SafeArea(
+        child: RefreshIndicator(
+          onRefresh: getHospitals,
+          child: (_isLoading)
+              ? LoadingWidget(callbackFunc: getHospitals)
+              : widgetPlaceholder,
+        ),
       ),
     );
   }
