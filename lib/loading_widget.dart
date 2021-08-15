@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class LoadingWidget extends StatelessWidget {
   final callbackFunc;
-  String? param;
-  LoadingWidget({Key? key, Function? this.callbackFunc, this.param}) : super(key: key);
+  final param;
+  LoadingWidget({Key? key, Function? this.callbackFunc, String? this.param})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

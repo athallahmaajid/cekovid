@@ -5,10 +5,11 @@ import 'package:cekovid/my_icon_icons.dart';
 
 class CarouselCard extends StatefulWidget {
   final item;
-  String itemIndex;
+  final itemIndex;
   final penambahan;
 
-  CarouselCard({Key? key, this.item, this.itemIndex: "", this.penambahan})
+  CarouselCard(
+      {Key? key, this.item, String this.itemIndex: "", this.penambahan})
       : super(key: key);
 
   @override
@@ -59,7 +60,6 @@ class _CarouselCardState extends State<CarouselCard> {
   @override
   void initState() {
     chooseColorIcon();
-    // TODO: implement initState
     super.initState();
   }
 

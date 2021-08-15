@@ -34,7 +34,6 @@ class _BedCardState extends State<BedCard> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _animationController.dispose();
     super.dispose();
   }
