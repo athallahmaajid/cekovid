@@ -107,6 +107,7 @@ class _CovidHospitalState extends State<CovidHospital> {
             ),
             ListView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: hospitals.length,
               itemBuilder: ((context, index) {
                 var _isPressed = false;
@@ -308,13 +309,13 @@ class _CovidHospitalState extends State<CovidHospital> {
                                       children: [
                                         Icon(
                                           Icons.location_on,
-                                          color: Color(0xFF6c63ff),
+                                          color: Color(0xFFc90015),
                                           size: 14,
                                         ),
                                         Text(
                                           "Lokasi",
                                           style: TextStyle(
-                                            color: Color(0xFF6c63ff),
+                                            color: Color(0xFFc90015),
                                             fontSize: 14,
                                           ),
                                         ),
@@ -351,7 +352,7 @@ class _CovidHospitalState extends State<CovidHospital> {
                                     child: Text(
                                       "Detail",
                                       style: TextStyle(
-                                        color: Color(0xFF6c63ff),
+                                        color: Color(0xFFc90015),
                                         fontSize: 14,
                                       ),
                                     ),
@@ -384,10 +385,10 @@ class _CovidHospitalState extends State<CovidHospital> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF6c63ff),
+      backgroundColor: Color(0xFFc90015),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFF6c63ff),
+        backgroundColor: Color(0xFFc90015),
         elevation: 0,
       ),
       drawer: Drawer(
@@ -395,8 +396,7 @@ class _CovidHospitalState extends State<CovidHospital> {
           child: ListView(
             children: [
               DrawerHeader(
-                decoration:
-                    BoxDecoration(color: Color.fromRGBO(90, 100, 255, 1)),
+                decoration: BoxDecoration(color: Color(0xFFc90015)),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),

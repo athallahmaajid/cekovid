@@ -34,10 +34,10 @@ class _CovidNewsState extends State<CovidNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF6c63ff),
+      backgroundColor: Color(0xFFc90015),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFF6c63ff),
+        backgroundColor: Color(0xFFc90015),
         elevation: 0,
       ),
       drawer: Drawer(
@@ -45,8 +45,7 @@ class _CovidNewsState extends State<CovidNews> {
           child: ListView(
             children: [
               DrawerHeader(
-                decoration:
-                    BoxDecoration(color: Color.fromRGBO(90, 100, 255, 1)),
+                decoration: BoxDecoration(color: Color(0xFFc90015)),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),
@@ -83,7 +82,6 @@ class _CovidNewsState extends State<CovidNews> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("Berita terbaru Covid-19"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [

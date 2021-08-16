@@ -33,10 +33,10 @@ class _HospitalDetailState extends State<HospitalDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF6c63ff),
+        backgroundColor: Color(0xFFc90015),
         elevation: 0,
       ),
-      backgroundColor: Color(0xFF6c63ff),
+      backgroundColor: Color(0xFFc90015),
       extendBodyBehindAppBar: true,
       body: SafeArea(
         child: RefreshIndicator(
@@ -67,17 +67,19 @@ class _HospitalDetailState extends State<HospitalDetail> {
                         onTap: () {
                           _launchURL('tel:://${detailData["data"]['phone']}');
                         },
-                        child: (detailData['data']['phone'] == null)
+                        child: (detailData['data']['phone'] ==
+                                'hotline tidak tersedia')
                             ? IgnorePointer(
                                 child: Container(
                                   margin: EdgeInsets.only(top: 15, left: 15),
-                                  width: 120,
+                                  width: 130,
                                   padding: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
                                     color: Color(0xA8004455),
                                     borderRadius: BorderRadius.circular(5),
                                   ),
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.phone, color: Colors.white),
                                       Text(
@@ -90,13 +92,14 @@ class _HospitalDetailState extends State<HospitalDetail> {
                               )
                             : Container(
                                 margin: EdgeInsets.only(top: 15, left: 15),
-                                width: 120,
+                                width: 130,
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   color: Color(0xFF004469),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.phone, color: Colors.white),
                                     Text(
@@ -112,6 +115,7 @@ class _HospitalDetailState extends State<HospitalDetail> {
                       ),
                       ListView.builder(
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         itemCount: (detailData["data"]["bedDetail"]).length,
                         itemBuilder: (context, index) {
                           return BedCard(

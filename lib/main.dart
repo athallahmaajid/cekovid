@@ -9,7 +9,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await precachePicture(
       ExactAssetPicture(
-          SvgPicture.svgStringDecoder, 'assets/covid_19_precautions.svg'),
+          SvgPicture.svgStringDecoder, 'assets/empty_street_red.svg'),
       null);
   runApp(MyApp());
 }
