@@ -34,10 +34,10 @@ class _CovidNewsState extends State<CovidNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFc90015),
+      backgroundColor: Theme.of(context).primaryColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFFc90015),
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
       ),
       drawer: Drawer(
@@ -45,7 +45,8 @@ class _CovidNewsState extends State<CovidNews> {
           child: ListView(
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(color: Color(0xFFc90015)),
+                decoration:
+                    BoxDecoration(color: Theme.of(context).primaryColor),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),

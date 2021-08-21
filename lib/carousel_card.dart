@@ -96,7 +96,12 @@ class _CarouselCardState extends State<CarouselCard> {
             ),
           ),
           (widget.penambahan == null)
-              ? Container()
+              ? Expanded(
+                  flex: 2,
+                  child: SizedBox(
+                    height: 16,
+                  ),
+                )
               : Expanded(
                   flex: 2,
                   child: Text(

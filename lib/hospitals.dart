@@ -309,13 +309,14 @@ class _CovidHospitalState extends State<CovidHospital> {
                                       children: [
                                         Icon(
                                           Icons.location_on,
-                                          color: Color(0xFFc90015),
+                                          color: Theme.of(context).primaryColor,
                                           size: 14,
                                         ),
                                         Text(
                                           "Lokasi",
                                           style: TextStyle(
-                                            color: Color(0xFFc90015),
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             fontSize: 14,
                                           ),
                                         ),
@@ -352,7 +353,7 @@ class _CovidHospitalState extends State<CovidHospital> {
                                     child: Text(
                                       "Detail",
                                       style: TextStyle(
-                                        color: Color(0xFFc90015),
+                                        color: Theme.of(context).primaryColor,
                                         fontSize: 14,
                                       ),
                                     ),
@@ -385,10 +386,10 @@ class _CovidHospitalState extends State<CovidHospital> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFc90015),
+      backgroundColor: Theme.of(context).primaryColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFFc90015),
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
       ),
       drawer: Drawer(
@@ -396,7 +397,8 @@ class _CovidHospitalState extends State<CovidHospital> {
           child: ListView(
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(color: Color(0xFFc90015)),
+                decoration:
+                    BoxDecoration(color: Theme.of(context).primaryColor),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),

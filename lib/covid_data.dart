@@ -103,9 +103,9 @@ class _CovidDataState extends State<CovidData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFc90015),
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        backgroundColor: Color(0xFFc90015),
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0.0,
       ),
       drawer: Drawer(
@@ -113,7 +113,8 @@ class _CovidDataState extends State<CovidData> {
           child: ListView(
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(color: Color(0xFFc90015)),
+                decoration:
+                    BoxDecoration(color: Theme.of(context).primaryColor),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),
@@ -145,55 +146,61 @@ class _CovidDataState extends State<CovidData> {
       body: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  value: negara,
-                  items: countries.map<DropdownMenuItem<String>>((value) {
-                    if (value == "World") {
-                      return DropdownMenuItem(
-                          value: value, child: Text("Global"));
-                    }
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Row(
-                        children: [
-                          (value == "Global")
-                              ? Container()
-                              : SizedBox(
-                                  width: 20,
-                                  height: 15,
-                                  child: SvgPicture.asset(
-                                    "assets/flags/${value.toLowerCase()}.svg",
-                                    height: 15,
-                                    width: 10,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text("$value")
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      negara = "$value";
-                      _loading = true;
-                      if (negara == "ID") {
-                        callbackFunc = fetchIndonesiaData;
-                        param = null;
-                        _provinceAvailable = true;
-                      } else {
-                        callbackFunc = getGlobalData;
-                        param = negara;
-                        _provinceAvailable = false;
+              Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: negara,
+                    items: countries.map<DropdownMenuItem<String>>((value) {
+                      if (value == "World") {
+                        return DropdownMenuItem(
+                            value: value, child: Text("Global"));
                       }
-                    });
-                  },
+                      return DropdownMenuItem(
+                        value: value,
+                        child: Row(
+                          children: [
+                            (value == "Global")
+                                ? Container()
+                                : SizedBox(
+                                    width: 20,
+                                    height: 15,
+                                    child: SvgPicture.asset(
+                                      "assets/flags/${value.toLowerCase()}.svg",
+                                      height: 15,
+                                      width: 10,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "$value",
+                              style: TextStyle(fontSize: 20),
+                            )
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        negara = "$value";
+                        _loading = true;
+                        if (negara == "ID") {
+                          callbackFunc = fetchIndonesiaData;
+                          param = null;
+                          _provinceAvailable = true;
+                        } else {
+                          callbackFunc = getGlobalData;
+                          param = negara;
+                          _provinceAvailable = false;
+                        }
+                      });
+                    },
+                  ),
                 ),
               ),
               (_provinceAvailable)
@@ -205,7 +212,10 @@ class _CovidDataState extends State<CovidData> {
                             .map<DropdownMenuItem<String>>((value) {
                           return DropdownMenuItem(
                             value: value,
-                            child: new Text(value),
+                            child: new Text(
+                              value,
+                              style: TextStyle(fontSize: 20),
+                            ),
                           );
                         }).toList(),
                         onChanged: (value) {

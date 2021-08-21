@@ -19,14 +19,16 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: Text("Cekovid"), backgroundColor: Color(0xFFc90015)),
+      appBar: AppBar(
+          title: Text("Cekovid"),
+          backgroundColor: Theme.of(context).primaryColor),
       drawer: Drawer(
         child: SafeArea(
           child: ListView(
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(color: Color(0xFFc90015)),
+                decoration:
+                    BoxDecoration(color: Theme.of(context).primaryColor),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),
@@ -60,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 2,
             height: MediaQuery.of(context).size.height / 3,
-            child: SvgPicture.asset("assets/empty_street_red.svg"),
+            child: SvgPicture.asset("assets/covid_19_precautions.svg"),
           ),
           SizedBox(
             height: 50,

@@ -33,10 +33,10 @@ class _HospitalDetailState extends State<HospitalDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFc90015),
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
       ),
-      backgroundColor: Color(0xFFc90015),
+      backgroundColor: Theme.of(context).primaryColor,
       extendBodyBehindAppBar: true,
       body: SafeArea(
         child: RefreshIndicator(

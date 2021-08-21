@@ -9,7 +9,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await precachePicture(
       ExactAssetPicture(
-          SvgPicture.svgStringDecoder, 'assets/empty_street_red.svg'),
+          SvgPicture.svgStringDecoder, 'assets/covid_19_precautions.svg'),
       null);
   runApp(MyApp());
 }
@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
         '/news': (BuildContext context) => new CovidNews(),
         '/hospital': (BuildContext context) => new CovidHospital(),
       },
+      theme: ThemeData(
+        primaryColor: Color(0xFF5a64ff),
+      ),
     );
   }
 }
