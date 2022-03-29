@@ -7,10 +7,7 @@ import 'package:cekovid/hospitals.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await precachePicture(
-      ExactAssetPicture(
-          SvgPicture.svgStringDecoder, 'assets/covid_19_precautions.svg'),
-      null);
+  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/covid_19_precautions.svg'), null);
   runApp(MyApp());
 }
 
@@ -29,7 +26,7 @@ class MyApp extends StatelessWidget {
         '/hospital': (BuildContext context) => new CovidHospital(),
       },
       theme: ThemeData(
-        primaryColor: Color(0xFF5a64ff),
+        primaryColor: Color(0xFF5300e8),
       ),
     );
   }

@@ -16,12 +16,10 @@ class _CovidNewsState extends State<CovidNews> {
   List<Map> news = [];
   bool _isLoading = true;
 
-  void _launchURL(url) async =>
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+  void _launchURL(url) async => await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 
   Future<void> getNews() async {
-    var response = await http
-        .get(Uri.parse("https://covid19-news-api-self.vercel.app/api/news"));
+    var response = await http.get(Uri.parse("https://covid19-news-api-self.vercel.app/api/news"));
     var data = json.decode(response.body);
     for (var i = 1; i < data.length + 1; i++) {
       news.add(data["$i"]);
@@ -45,31 +43,26 @@ class _CovidNewsState extends State<CovidNews> {
           child: ListView(
             children: [
               DrawerHeader(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).primaryColor),
+                decoration: BoxDecoration(color: Theme.of(context).primaryColor),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),
               ),
               ListTile(
                 title: Text("Home"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/home"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/home"),
               ),
               ListTile(
                 title: Text("Covid Data"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/covidData"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/covidData"),
               ),
               ListTile(
                 title: Text("Covid News"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/news"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/news"),
               ),
               ListTile(
                 title: Text("Hospital"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/hospital"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/hospital"),
               ),
             ],
           ),
@@ -87,12 +80,12 @@ class _CovidNewsState extends State<CovidNews> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                              padding: EdgeInsets.only(
-                                  left: MediaQuery.of(context).size.width / 15),
-                              child: Text(
-                                "Berita Covid terbaru",
-                                style: TextStyle(fontSize: 24),
-                              )),
+                            padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 15),
+                            child: Text(
+                              "Berita Covid terbaru",
+                              style: TextStyle(fontSize: 24, color: Colors.white),
+                            ),
+                          ),
                         ],
                       ),
                       ListView.builder(
@@ -117,11 +110,7 @@ class _CovidNewsState extends State<CovidNews> {
                             child: Container(
                               margin: EdgeInsets.all(15),
                               padding: EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: (_isPressed)
-                                      ? Colors.blue
-                                      : Colors.white),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: (_isPressed) ? Colors.blue : Colors.white),
                               child: Column(
                                 children: [
                                   Container(

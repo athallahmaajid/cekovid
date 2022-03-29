@@ -35,8 +35,7 @@ class _CovidDataState extends State<CovidData> {
   }
 
   void fetchIndonesiaData() async {
-    var response = await http
-        .get(Uri.parse("https://data.covid19.go.id/public/api/update.json"));
+    var response = await http.get(Uri.parse("https://data.covid19.go.id/public/api/update.json"));
     var data = json.decode(response.body);
     IndonesiaData finalData = IndonesiaData.fromJson(data['update']['total']);
     if (!mounted) return;
@@ -58,16 +57,12 @@ class _CovidDataState extends State<CovidData> {
     if (country == "Global") {
       data = await http.get(Uri.parse("https://covid19.mathdro.id/api/"));
     } else {
-      data = await http
-          .get(Uri.https("covid19.mathdro.id", "/api/countries/$country/"));
+      data = await http.get(Uri.https("covid19.mathdro.id", "/api/countries/$country/"));
     }
     data = json.decode(data.body);
     setState(() {
       penambahan = {};
-      displayData = {
-        "Positif": data["confirmed"]['value'],
-        "Meninggal": data["deaths"]['value']
-      };
+      displayData = {"Positif": data["confirmed"]['value'], "Meninggal": data["deaths"]['value']};
       _loading = false;
     });
   }
@@ -75,8 +70,7 @@ class _CovidDataState extends State<CovidData> {
   void getProvincesData(String provinceName) async {
     var data;
     Map result = {};
-    data = await http
-        .get(Uri.parse("https://data.covid19.go.id/public/api/prov.json"));
+    data = await http.get(Uri.parse("https://data.covid19.go.id/public/api/prov.json"));
     data = json.decode(data.body)['list_data'];
     for (var i = 0; i < data.length; i++) {
       if (data[i]['key'] == provinceName.toUpperCase()) {
@@ -85,11 +79,7 @@ class _CovidDataState extends State<CovidData> {
     }
     setState(() {
       penambahan = result.remove("penambahan");
-      penambahan = {
-        "Positif": penambahan["positif"],
-        "Sembuh": penambahan["sembuh"],
-        "Meninggal": penambahan["meninggal"]
-      };
+      penambahan = {"Positif": penambahan["positif"], "Sembuh": penambahan["sembuh"], "Meninggal": penambahan["meninggal"]};
       displayData = {
         "Positif": result["jumlah_kasus"],
         "Dirawat": result["jumlah_dirawat"],
@@ -113,31 +103,26 @@ class _CovidDataState extends State<CovidData> {
           child: ListView(
             children: [
               DrawerHeader(
-                decoration:
-                    BoxDecoration(color: Theme.of(context).primaryColor),
+                decoration: BoxDecoration(color: Theme.of(context).primaryColor),
                 child: Center(
                   child: Image(image: AssetImage("assets/corona.png")),
                 ),
               ),
               ListTile(
                 title: Text("Home"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/home"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/home"),
               ),
               ListTile(
                 title: Text("Covid Data"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/covidData"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/covidData"),
               ),
               ListTile(
                 title: Text("Covid News"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/news"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/news"),
               ),
               ListTile(
                 title: Text("Hospital"),
-                onTap: () =>
-                    Navigator.of(context).pushReplacementNamed("/hospital"),
+                onTap: () => Navigator.of(context).pushReplacementNamed("/hospital"),
               ),
             ],
           ),
@@ -155,8 +140,7 @@ class _CovidDataState extends State<CovidData> {
                     value: negara,
                     items: countries.map<DropdownMenuItem<String>>((value) {
                       if (value == "World") {
-                        return DropdownMenuItem(
-                            value: value, child: Text("Global"));
+                        return DropdownMenuItem(value: value, child: Text("Global"));
                       }
                       return DropdownMenuItem(
                         value: value,
@@ -179,7 +163,7 @@ class _CovidDataState extends State<CovidData> {
                             ),
                             Text(
                               "$value",
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 20, color: Colors.white),
                             )
                           ],
                         ),
@@ -207,14 +191,12 @@ class _CovidDataState extends State<CovidData> {
                   ? DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         value: provinsi,
-                        items: listProvinsi
-                            .toList()
-                            .map<DropdownMenuItem<String>>((value) {
+                        items: listProvinsi.toList().map<DropdownMenuItem<String>>((value) {
                           return DropdownMenuItem(
                             value: value,
                             child: new Text(
                               value,
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           );
                         }).toList(),
@@ -263,7 +245,8 @@ class _CovidDataState extends State<CovidData> {
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     scrollDirection: Axis.horizontal,
-                  )),
+                  ),
+                ),
         ],
       ),
     );
